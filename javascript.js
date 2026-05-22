@@ -157,50 +157,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* 9. Nokia-Style Helping Hands GSAP Timeline */
+    /* 9. Realistic Photo Hands — Nokia-style GSAP Timeline */
     if (document.querySelector('.nokia-anim-wrap')) {
-        // Set initial positions: arms off-screen
-        gsap.set('.nokia-arm-left',  { x: -280 });
-        gsap.set('.nokia-arm-right', { x:  280 });
-        gsap.set('.nokia-glow',      { attr: { rx: 0, ry: 0 } });
-        gsap.set('.nokia-sparkles circle', { opacity: 0, scale: 0, transformOrigin: 'center' });
-        gsap.set('.nokia-bg-pulse',  { opacity: 0 });
-        gsap.set('#nokia-caption',   { opacity: 0, y: 8 });
 
-        const nokiaTl = gsap.timeline({ repeat: -1, repeatDelay: 1.5 });
+        // Set initial states
+        gsap.set('.hand-give',         { x: '-110%' });
+        gsap.set('.hand-receive',       { x:  '110%' });
+        gsap.set('.nokia-center-glow',  { width: 0, height: 0, opacity: 0 });
+        gsap.set('.nk-dot',            { opacity: 0, scale: 0 });
+        gsap.set('.nokia-bg-pulse',    { opacity: 0 });
+        gsap.set('#nokia-caption',     { opacity: 0, y: 10 });
 
-        // 1. Arms sweep in from both sides simultaneously — smooth, purposeful
-        nokiaTl.to('.nokia-arm-left',  { x: 0, duration: 2.2, ease: 'power3.out' }, 0)
-                .to('.nokia-arm-right', { x: 0, duration: 2.2, ease: 'power3.out' }, 0)
+        const nokiaTl = gsap.timeline({ repeat: -1, repeatDelay: 1.2 });
 
-        // 2. At meeting: warm glow ellipse expands like Nokia's iconic radiance
-                .to('.nokia-glow', { attr: { rx: 130, ry: 90 }, duration: 1.4, ease: 'power2.out' }, 1.8)
-                .to('.nokia-bg-pulse', { opacity: 1, duration: 0.8, ease: 'power2.out' }, 1.9)
+        // Phase 1 — Real hands slide in (Nokia purposeful sweep)
+        nokiaTl
+            .to('.hand-give',    { x: '0%', duration: 2.4, ease: 'power3.out' }, 0)
+            .to('.hand-receive', { x: '0%', duration: 2.4, ease: 'power3.out' }, 0)
 
-        // 3. Sparkles burst outward from the meeting point
-                .to('.nokia-sparkles circle', {
-                    opacity: 1, scale: 1.6, y: -18,
-                    stagger: { each: 0.07, from: 'center' },
-                    duration: 0.5, ease: 'back.out(2)'
-                }, 2.0)
-                .to('.nokia-sparkles circle', {
-                    opacity: 0, y: -28,
-                    stagger: { each: 0.07, from: 'center' },
-                    duration: 0.6, ease: 'power2.in'
-                }, 2.5)
+        // Phase 2 — Warm golden glow blooms at center (the Nokia magic moment)
+            .to('.nokia-center-glow', {
+                width: 220, height: 220,
+                opacity: 0.9,
+                duration: 1.2, ease: 'power2.out'
+            }, 2.0)
+            .to('.nokia-bg-pulse', { opacity: 1, duration: 0.9 }, 2.0)
 
-        // 4. Caption text floats up into view
-                .to('#nokia-caption', { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 2.2)
+        // Phase 3 — Sparkles pop outward
+            .to('.nk-dot', {
+                opacity: 1, scale: 1.4,
+                stagger: 0.08, duration: 0.45, ease: 'back.out(3)'
+            }, 2.3)
+            .to('.nk-dot', {
+                y: -20, opacity: 0,
+                stagger: 0.08, duration: 0.7, ease: 'power2.in'
+            }, 2.75)
 
-        // 5. Hold the moment (Nokia lets the brand live for a beat)
-                .to({}, { duration: 2.0 })
+        // Phase 4 — Caption text rises into view
+            .to('#nokia-caption', { opacity: 1, y: 0, duration: 1.1, ease: 'power2.out' }, 2.2)
 
-        // 6. Arms retract, glow fades — clean and loopable
-                .to('.nokia-arm-left',  { x: -280, duration: 1.6, ease: 'power3.in' }, '+=0.2')
-                .to('.nokia-arm-right', { x:  280, duration: 1.6, ease: 'power3.in' }, '<')
-                .to('.nokia-glow',      { attr: { rx: 0, ry: 0 }, duration: 1.2, ease: 'power2.in' }, '<')
-                .to('.nokia-bg-pulse',  { opacity: 0, duration: 0.8 }, '<')
-                .to('#nokia-caption',   { opacity: 0, y: 8,  duration: 0.8 }, '<');
+        // Phase 5 — Hold (let the emotion breathe)
+            .to({}, { duration: 2.2 })
+
+        // Phase 6 — Hands retract, glow dissolves
+            .to('.hand-give',    { x: '-110%', duration: 1.5, ease: 'power3.in' }, '+=0')
+            .to('.hand-receive', { x:  '110%', duration: 1.5, ease: 'power3.in' }, '<')
+            .to('.nokia-center-glow', { width: 0, height: 0, opacity: 0, duration: 0.9 }, '<')
+            .to('.nokia-bg-pulse',    { opacity: 0, duration: 0.7 }, '<')
+            .to('#nokia-caption',     { opacity: 0, y: 10, duration: 0.7 }, '<');
     }
 });
 

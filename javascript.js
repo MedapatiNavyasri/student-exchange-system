@@ -157,34 +157,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* 9. Emotional Hero GSAP Timeline */
-    // Create a beautiful, emotional sequenced animation
-    if (document.querySelector('.emotional-anim')) {
-        const eTl = gsap.timeline({ repeat: -1, yoyo: false });
+    /* 9. Nokia-Style Helping Hands GSAP Timeline */
+    if (document.querySelector('.nokia-anim-wrap')) {
+        // Set initial positions: arms off-screen
+        gsap.set('.nokia-arm-left',  { x: -280 });
+        gsap.set('.nokia-arm-right', { x:  280 });
+        gsap.set('.nokia-glow',      { attr: { rx: 0, ry: 0 } });
+        gsap.set('.nokia-sparkles circle', { opacity: 0, scale: 0, transformOrigin: 'center' });
+        gsap.set('.nokia-bg-pulse',  { opacity: 0 });
+        gsap.set('#nokia-caption',   { opacity: 0, y: 8 });
 
-        eTl.fromTo('.e-hand-left',
-            { x: -50, opacity: 0 },
-            { x: 0, opacity: 1, duration: 3, ease: 'power2.inOut' }, 0
-        )
-        .fromTo('.e-hand-right',
-            { x: 50, opacity: 0 },
-            { x: 0, opacity: 1, duration: 3, ease: 'power2.inOut' }, 0
-        )
-        // Item appears gracefully
-        .to('.e-core-item', { opacity: 1, scale: 1.2, transformOrigin: 'center', duration: 1.5, ease: 'power2.out' }, "-=1")
-        .to('.e-core-glow', { opacity: 0.5, scale: 2, transformOrigin: 'center', duration: 2, ease: 'power1.inOut' }, "<")
-        .to('.anim-bg-glow', { opacity: 1, duration: 1.5 }, "<")
-        // Caption text
-        .to('#e-caption', { opacity: 1, y: -5, duration: 1.5 }, "-=1.5")
-        // Sparkles pop
-        .to('.e-sparkle', { opacity: 1, scale: 1.5, transformOrigin: 'center', duration: 0.5, stagger: 0.1 }, "-=1")
-        .to('.e-sparkle', { y: -15, opacity: 0, duration: 1, stagger: 0.1 }, "+=0.2")
-        // Sustain the emotional moment
-        .to({}, { duration: 2 })
-        // Fade out to restart
-        .to('.e-hand-left, .e-hand-right, .e-core-item, .e-core-glow, .anim-bg-glow, #e-caption', 
-            { opacity: 0, duration: 1.5, ease: 'power2.inOut' }
-        );
+        const nokiaTl = gsap.timeline({ repeat: -1, repeatDelay: 1.5 });
+
+        // 1. Arms sweep in from both sides simultaneously — smooth, purposeful
+        nokiaTl.to('.nokia-arm-left',  { x: 0, duration: 2.2, ease: 'power3.out' }, 0)
+                .to('.nokia-arm-right', { x: 0, duration: 2.2, ease: 'power3.out' }, 0)
+
+        // 2. At meeting: warm glow ellipse expands like Nokia's iconic radiance
+                .to('.nokia-glow', { attr: { rx: 130, ry: 90 }, duration: 1.4, ease: 'power2.out' }, 1.8)
+                .to('.nokia-bg-pulse', { opacity: 1, duration: 0.8, ease: 'power2.out' }, 1.9)
+
+        // 3. Sparkles burst outward from the meeting point
+                .to('.nokia-sparkles circle', {
+                    opacity: 1, scale: 1.6, y: -18,
+                    stagger: { each: 0.07, from: 'center' },
+                    duration: 0.5, ease: 'back.out(2)'
+                }, 2.0)
+                .to('.nokia-sparkles circle', {
+                    opacity: 0, y: -28,
+                    stagger: { each: 0.07, from: 'center' },
+                    duration: 0.6, ease: 'power2.in'
+                }, 2.5)
+
+        // 4. Caption text floats up into view
+                .to('#nokia-caption', { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 2.2)
+
+        // 5. Hold the moment (Nokia lets the brand live for a beat)
+                .to({}, { duration: 2.0 })
+
+        // 6. Arms retract, glow fades — clean and loopable
+                .to('.nokia-arm-left',  { x: -280, duration: 1.6, ease: 'power3.in' }, '+=0.2')
+                .to('.nokia-arm-right', { x:  280, duration: 1.6, ease: 'power3.in' }, '<')
+                .to('.nokia-glow',      { attr: { rx: 0, ry: 0 }, duration: 1.2, ease: 'power2.in' }, '<')
+                .to('.nokia-bg-pulse',  { opacity: 0, duration: 0.8 }, '<')
+                .to('#nokia-caption',   { opacity: 0, y: 8,  duration: 0.8 }, '<');
     }
 });
 

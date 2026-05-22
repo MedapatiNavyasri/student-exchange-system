@@ -94,52 +94,48 @@ p { color: var(--text-muted); font-size: 1.05rem; }
 .hero-actions { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
 
 /* ==========================================================================
-   Emotional Exchange Animation
+   Nokia-Style Helping Hands Animation
    ========================================================================== */
-.emotional-anim {
+.nokia-anim-wrap {
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto 3rem;
     height: 180px;
     position: relative;
     overflow: hidden;
     border-radius: var(--radius-xl);
-    background: var(--bg-surface);
+    background: #fafaf8;
     border: 1px solid var(--border-color);
-    box-shadow: 0 30px 60px -12px rgba(0,0,0,0.06);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    box-shadow: 0 20px 50px -10px rgba(0,0,0,0.08);
 }
 
-.anim-bg-glow {
+/* Warm radial background pulse that blooms on the meeting moment */
+.nokia-bg-pulse {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(46, 204, 113, 0.05) 0%, transparent 70%);
-    opacity: 0; /* JS driven */
+    background: radial-gradient(circle at center, rgba(255, 213, 128, 0.25) 0%, transparent 65%);
+    opacity: 0;
     pointer-events: none;
 }
 
-.emotional-svg {
+.nokia-svg {
     position: absolute;
-    top: -20px;
-    width: 100%; 
-    height: 100%;
-    z-index: 1;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
 }
 
-.emotional-caption {
+.nokia-caption {
     position: absolute;
-    bottom: 20px;
-    width: 100%;
+    bottom: 14px;
+    left: 0; right: 0;
     text-align: center;
     font-family: var(--font-heading);
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-style: italic;
     color: var(--text-muted);
-    opacity: 0; /* JS driven fading */
-    z-index: 2;
+    opacity: 0;
+    margin: 0;
+    letter-spacing: 0.02em;
 }
 
 /* Interactive Showcase (Mockup) populated with dummy data */

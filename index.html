@@ -58,49 +58,59 @@
                     Trade textbooks, electronics, and dorm essentials exclusively with verified university students. Zero commissions, infinite possibilities.
                 </p>
 
-                <!-- Emotional Exchange Animation -->
-                <div class="emotional-anim" id="emotional-anim-container">
-                    <div class="anim-bg-glow"></div>
-                    <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" class="emotional-svg">
+                <!-- Nokia-style Helping Hands Animation -->
+                <div class="nokia-anim-wrap" id="nokia-anim">
+                    <div class="nokia-bg-pulse"></div>
+
+                    <svg class="nokia-svg" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="glowG" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stop-color="#E4B27E" />
-                                <stop offset="100%" stop-color="#2ECC71" />
-                            </linearGradient>
-                            <filter id="blurFilter" x="-20%" y="-20%" width="140%" height="140%">
-                                <feGaussianBlur stdDeviation="8" />
+                            <radialGradient id="warmGlow" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%"   stop-color="#FFD580" stop-opacity="0.9"/>
+                                <stop offset="60%"  stop-color="#FF9F43" stop-opacity="0.4"/>
+                                <stop offset="100%" stop-color="#FF9F43" stop-opacity="0"/>
+                            </radialGradient>
+                            <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+                                <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#FF9F43" flood-opacity="0.35"/>
                             </filter>
                         </defs>
 
-                        <!-- Left Hand (Giver) - Realistic Line Art -->
-                        <g class="e-hand-left">
-                            <path d="M-100,140 C-50,140 20,120 80,120 C120,120 160,135 180,140 C190,142 200,135 210,125 C220,115 225,120 215,130 C205,140 220,145 225,135 C230,125 240,130 230,140 C220,150 200,165 170,170 C120,175 50,180 -100,180" 
-                                  fill="none" stroke="var(--text-main)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Warm radial glow bursts at meeting point -->
+                        <ellipse class="nokia-glow" cx="250" cy="108" rx="0" ry="0" fill="url(#warmGlow)"/>
+
+                        <!-- LEFT ARM -->
+                        <g class="nokia-arm-left" filter="url(#softShadow)">
+                            <path d="M-80,130 C30,130 110,115 170,108" fill="none" stroke="#1a1a1a" stroke-width="18" stroke-linecap="round"/>
+                            <path d="M155,90 C170,90 185,95 188,108 C191,121 180,130 165,128 C150,128 138,118 155,108 Z" fill="#1a1a1a"/>
+                            <path d="M174,89 C177,71 184,68 188,78 C190,85 181,90 177,92Z" fill="#1a1a1a"/>
+                            <path d="M179,92 C183,73 191,71 193,81 C195,90 186,94 182,96Z" fill="#1a1a1a"/>
+                            <path d="M183,97 C185,80 192,78 193,89 C194,97 186,100 183,101Z" fill="#1a1a1a"/>
+                            <path d="M182,102 C183,88 189,87 189,97 C189,104 183,106 181,106Z" fill="#1a1a1a"/>
+                            <path d="M157,102 C148,88 158,78 166,86 C170,90 168,104 163,108Z" fill="#1a1a1a"/>
                         </g>
 
-                        <!-- Right Hand (Receiver) - Realistic Line Art -->
-                        <g class="e-hand-right">
-                            <path d="M700,140 C650,140 580,120 520,120 C480,120 440,135 420,140 C410,142 400,135 390,125 C380,115 375,120 385,130 C395,140 380,145 375,135 C370,125 360,130 370,140 C380,150 400,165 430,170 C480,175 550,180 700,180" 
-                                  fill="none" stroke="var(--text-main)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- RIGHT ARM -->
+                        <g class="nokia-arm-right" filter="url(#softShadow)">
+                            <path d="M580,130 C470,130 390,115 330,108" fill="none" stroke="#1a1a1a" stroke-width="18" stroke-linecap="round"/>
+                            <path d="M345,90 C330,90 315,95 312,108 C309,121 320,130 335,128 C350,128 362,118 345,108 Z" fill="#1a1a1a"/>
+                            <path d="M326,89 C323,71 316,68 312,78 C310,85 319,90 323,92Z" fill="#1a1a1a"/>
+                            <path d="M321,92 C317,73 309,71 307,81 C305,90 314,94 318,96Z" fill="#1a1a1a"/>
+                            <path d="M317,97 C315,80 308,78 307,89 C306,97 314,100 317,101Z" fill="#1a1a1a"/>
+                            <path d="M318,102 C317,88 311,87 311,97 C311,104 317,106 319,106Z" fill="#1a1a1a"/>
+                            <path d="M343,102 C352,88 342,78 334,86 C330,90 332,104 337,108Z" fill="#1a1a1a"/>
                         </g>
 
-                        <!-- Glowing Core (The Giving Item/Support) -->
-                        <g class="e-core-wrapper">
-                            <circle class="e-core-glow" cx="300" cy="115" r="30" fill="url(#glowG)" filter="url(#blurFilter)" opacity="0"/>
-                            <path class="e-core-item" d="M285,115 L300,100 L315,115 L300,130 Z" fill="#2ECC71" opacity="0"/>
-                            
-                            <!-- Star/Sparkle Particles -->
-                            <circle class="e-sparkle p1" cx="290" cy="90" r="3" fill="#FFF" opacity="0"/>
-                            <circle class="e-sparkle p2" cx="320" cy="100" r="2" fill="#FFF" opacity="0"/>
-                            <circle class="e-sparkle p3" cx="310" cy="135" r="2.5" fill="#FFF" opacity="0"/>
-                            <circle class="e-sparkle p4" cx="280" cy="120" r="1.5" fill="#FFF" opacity="0"/>
+                        <!-- Sparkles at meetup point -->
+                        <g class="nokia-sparkles">
+                            <circle cx="250" cy="85"  r="3"   fill="#FFD580" opacity="0"/>
+                            <circle cx="272" cy="98"  r="2"   fill="#fff"    opacity="0"/>
+                            <circle cx="228" cy="98"  r="2"   fill="#fff"    opacity="0"/>
+                            <circle cx="250" cy="132" r="2.5" fill="#FFD580" opacity="0"/>
+                            <circle cx="268" cy="78"  r="1.5" fill="#fff"    opacity="0"/>
+                            <circle cx="232" cy="80"  r="1.5" fill="#fff"    opacity="0"/>
                         </g>
                     </svg>
 
-                    <!-- Emotional Caption that updates via JS -->
-                    <div class="emotional-caption" id="e-caption">
-                        Empowering each other, one exchange at a time.
-                    </div>
+                    <p class="nokia-caption" id="nokia-caption">Connecting students. Sharing possibilities.</p>
                 </div>
 
                 <div class="hero-actions">

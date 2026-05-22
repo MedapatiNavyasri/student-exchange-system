@@ -57,6 +57,32 @@
                 <p class="hero-p">
                     Trade textbooks, electronics, and dorm essentials exclusively with verified university students. Zero commissions, infinite possibilities.
                 </p>
+
+                <!-- Hand Exchange Animation -->
+                <div class="hand-exchange-anim">
+                    <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Left Hand (Giver) -->
+                        <g class="hand-left">
+                            <path d="M-50,60 C0,60 40,40 80,60 L120,60 C130,60 130,70 120,70 L20,75 Z" fill="#E4B27E" />
+                            <path d="M110,60 C125,50 135,65 120,68" fill="#D6A470" /> <!-- Thumb -->
+                        </g>
+
+                        <!-- Right Hand (Receiver) -->
+                        <g class="hand-right">
+                            <path d="M450,75 C400,75 360,55 320,75 L280,75 C270,75 270,85 280,85 L380,90 Z" fill="#90BADB" />
+                            <path d="M290,75 C275,65 265,80 280,83" fill="#80A9CA" /> <!-- Thumb -->
+                        </g>
+
+                        <!-- The Item (Textbook) -->
+                        <g class="exchange-item">
+                            <rect x="115" y="40" width="40" height="25" rx="3" fill="#2ECC71" />
+                            <rect x="115" y="40" width="8" height="25" fill="#27AE60" /> <!-- Spine -->
+                            <line x1="128" y1="48" x2="148" y2="48" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="128" y1="55" x2="140" y2="55" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </g>
+                    </svg>
+                </div>
+
                 <div class="hero-actions">
                     <a href="#" class="btn btn-primary btn-lg">Start Exchanging</a>
                     <a href="#demo" class="btn btn-secondary btn-lg">

@@ -156,9 +156,39 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    /* 9. Emotional Hero GSAP Timeline */
+    // Create a beautiful, emotional sequenced animation
+    if (document.querySelector('.emotional-anim')) {
+        const eTl = gsap.timeline({ repeat: -1, yoyo: false });
+
+        eTl.fromTo('.e-hand-left',
+            { x: -50, opacity: 0 },
+            { x: 0, opacity: 1, duration: 3, ease: 'power2.inOut' }, 0
+        )
+        .fromTo('.e-hand-right',
+            { x: 50, opacity: 0 },
+            { x: 0, opacity: 1, duration: 3, ease: 'power2.inOut' }, 0
+        )
+        // Item appears gracefully
+        .to('.e-core-item', { opacity: 1, scale: 1.2, transformOrigin: 'center', duration: 1.5, ease: 'power2.out' }, "-=1")
+        .to('.e-core-glow', { opacity: 0.5, scale: 2, transformOrigin: 'center', duration: 2, ease: 'power1.inOut' }, "<")
+        .to('.anim-bg-glow', { opacity: 1, duration: 1.5 }, "<")
+        // Caption text
+        .to('#e-caption', { opacity: 1, y: -5, duration: 1.5 }, "-=1.5")
+        // Sparkles pop
+        .to('.e-sparkle', { opacity: 1, scale: 1.5, transformOrigin: 'center', duration: 0.5, stagger: 0.1 }, "-=1")
+        .to('.e-sparkle', { y: -15, opacity: 0, duration: 1, stagger: 0.1 }, "+=0.2")
+        // Sustain the emotional moment
+        .to({}, { duration: 2 })
+        // Fade out to restart
+        .to('.e-hand-left, .e-hand-right, .e-core-item, .e-core-glow, .anim-bg-glow, #e-caption', 
+            { opacity: 0, duration: 1.5, ease: 'power2.inOut' }
+        );
+    }
 });
 
-/* 9. Journey Tab Switcher Logic */
+/* 10. Journey Tab Switcher Logic */
 function activateTab(tabIndex) {
     const panes = document.querySelectorAll('.visual-pane');
     panes.forEach(pane => pane.classList.remove('active'));
